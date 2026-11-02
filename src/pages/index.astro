@@ -1,16 +1,233 @@
 ---
+import '../styles/global.css';
 ---
 
-<html lang="en">
+<html lang="zh-CN" data-palette="vscode" data-mode="dark">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>欢迎 — dev-blog</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Hilda</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
-		<h1>Hellooo!</h1>
+		<!-- 图标 sprite（均为原创简易 SVG） -->
+		<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+			<symbol id="i-files" viewBox="0 0 24 24"
+				><rect x="3" y="6" width="12" height="15" rx="1.5"></rect><path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3H18a1 1 0 0 1 1 1v13"></path></symbol>
+			<symbol id="i-search" viewBox="0 0 24 24"
+				><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.2 15.2 20.5 20.5"></path></symbol>
+			<symbol id="i-branch" viewBox="0 0 24 24"
+				><circle cx="7" cy="6" r="2"></circle><circle cx="7" cy="18" r="2"></circle><circle
+					cx="17"
+					cy="6"
+					r="2"></circle><path d="M7 8v8"></path><path d="M17 8v1c0 3-4 3-7 5"></path></symbol>
+			<symbol id="i-tag" viewBox="0 0 24 24"
+				><path
+					d="M3 11.4V4a1 1 0 0 1 1-1h7.4a1 1 0 0 1 .7.3l8.6 8.6a1 1 0 0 1 0 1.4l-6.4 6.4a1 1 0 0 1-1.4 0L3.3 12.1a1 1 0 0 1-.3-.7z"
+				></path><circle cx="7.8" cy="7.8" r="1.4" style="fill:currentColor;stroke:none"></circle></symbol>
+			<symbol id="i-gear" viewBox="0 0 24 24"
+				><circle cx="12" cy="12" r="3.2"></circle><path
+					d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"
+				></path></symbol>
+			<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5.5 15.5 12 9 18.5"></path></symbol>
+			<symbol id="i-folder" viewBox="0 0 24 24"
+				><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></symbol>
+			<symbol id="i-md" viewBox="0 0 24 24"
+				><path
+					d="M6.5 3h7l4.5 4.5V20a1 1 0 0 1-1 1h-10.5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
+				></path><path d="M13.5 3v5h5"></path></symbol>
+			<symbol id="i-burger" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+			<symbol id="i-flag" viewBox="0 0 24 24"
+				><path d="M6 21V4"></path><path d="M6 4h11.5l-2.5 4 2.5 4H6"></path></symbol>
+			<symbol id="i-panel" viewBox="0 0 24 24"
+				><rect x="3.5" y="4.5" width="17" height="15" rx="2"></rect><path d="M14.5 4.5v15"></path></symbol>
+		</svg>
+
+		<div class="app">
+			<!-- 活动栏（纯装饰） -->
+			<nav class="activity" aria-hidden="true">
+				<div class="act-icons">
+					<span class="act-btn on" title="文章"><svg><use href="#i-files"></use></svg></span>
+					<span class="act-btn" title="搜索"><svg><use href="#i-search"></use></svg></span>
+					<span class="act-btn" title="源代码管理"><svg><use href="#i-branch"></use></svg></span>
+					<span class="act-btn" title="标签"><svg><use href="#i-tag"></use></svg></span>
+				</div>
+				<span class="act-btn" title="设置"><svg><use href="#i-gear"></use></svg></span>
+			</nav>
+
+			<!-- 侧栏：文件树 -->
+			<aside class="sidebar">
+				<div class="sb-head">文章</div>
+				<div class="ws">
+					<span class="chev"><svg><use href="#i-chev"></use></svg></span><span>dev-blog</span>
+				</div>
+				<div class="tree">
+					<div class="trow folder d1">
+						<span class="chev"><svg><use href="#i-chev"></use></svg></span><svg class="ic"
+							><use href="#i-folder"></use></svg
+						><span class="nm">posts</span><span class="ct">12</span>
+					</div>
+					<div class="trow d2">
+						<span class="chev"></span><svg class="ic"><use href="#i-md"></use></svg><span class="nm"
+							>2026-10-28-rust-ssg.md</span
+						>
+					</div>
+					<div class="trow d2">
+						<span class="chev"></span><svg class="ic"><use href="#i-md"></use></svg><span class="nm"
+							>2026-10-21-css-container-queries.md</span
+						>
+					</div>
+					<div class="trow d2">
+						<span class="chev"></span><svg class="ic"><use href="#i-md"></use></svg><span class="nm"
+							>2026-09-30-neovim-config.md</span
+						>
+					</div>
+					<div class="trow folder d1">
+						<span class="chev closed"><svg><use href="#i-chev"></use></svg></span><svg class="ic"
+							><use href="#i-folder"></use></svg
+						><span class="nm">notes</span><span class="ct">8</span>
+					</div>
+					<div class="trow d1">
+						<span class="chev"></span><svg class="ic"><use href="#i-md"></use></svg><span class="nm"
+							>about.md</span
+						>
+					</div>
+					<div class="trow d1">
+						<span class="chev"></span><svg class="ic"><use href="#i-md"></use></svg><span class="nm"
+							>readme.md</span
+						>
+					</div>
+				</div>
+			</aside>
+
+			<!-- 主区 -->
+			<main class="main">
+				<div class="mobilebar">
+					<button class="burger" aria-label="打开文件树"
+						><svg><use href="#i-burger"></use></svg></button>
+					<span class="mb-title mono">~/dev-blog</span>
+				</div>
+
+				<div class="tabbar">
+					<div class="tab on">
+						<svg class="ic"><use href="#i-flag"></use></svg><span>开始</span><span class="x">&times;</span>
+					</div>
+					<div class="tab-plus">+</div>
+				</div>
+
+				<div class="editor">
+					<div class="page">
+						<div class="welcome">
+							<h1 class="w-title">欢迎</h1>
+							<div class="w-sub mono">
+								~/dev-blog · your-name 的个人博客 —— 长得像个 IDE，但只用来阅读
+							</div>
+
+							<div class="w-actions">
+								<a class="w-btn mono" href="#"><svg><use href="#i-md"></use></svg>打开 readme.md</a>
+								<a class="w-btn mono" href="#"><svg><use href="#i-folder"></use></svg>浏览 posts/</a>
+								<a class="w-btn mono" href="#"><svg><use href="#i-search"></use></svg>搜索文章</a>
+							</div>
+
+							<section class="w-recent">
+								<div class="w-head mono"><span>最近</span><span class="w-en">RECENT</span></div>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">用 Rust 重写博客静态生成器</span><span class="w-d mono"
+										>2026-10-28</span
+									></a
+								>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">CSS 容器查询实战：组件级响应式</span><span class="w-d mono"
+										>2026-10-21</span
+									></a
+								>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">一次诡异的内存泄漏排查记录</span><span class="w-d mono"
+										>2026-10-12</span
+									></a
+								>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">Neovim 从零配置到日常主力</span><span class="w-d mono"
+										>2026-09-30</span
+									></a
+								>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">TypeScript 类型体操入门</span><span class="w-d mono"
+										>2026-09-18</span
+									></a
+								>
+								<a class="w-item" href="#"><svg class="ic"><use href="#i-md"></use></svg
+									><span class="w-t">我的 Obsidian 双链工作流</span><span class="w-d mono"
+										>2026-09-02</span
+									></a
+								>
+								<a class="w-more mono" href="#">查看全部 12 篇 →</a>
+							</section>
+						</div>
+
+						<!-- 右侧文章结构目录：无底板，仅一条白色竖线 + 隐藏图标（条目为占位） -->
+						<aside class="outline" aria-label="文章结构目录">
+							<button
+								class="toc-toggle"
+								id="toc-toggle"
+								type="button"
+								aria-expanded="true"
+								aria-controls="toc"
+								title="隐藏目录"
+							>
+								<svg><use href="#i-panel"></use></svg>
+							</button>
+							<nav class="toc" id="toc">
+								<a class="toc-i" href="#">引言</a>
+								<a class="toc-i" href="#">架构总览</a>
+								<a class="toc-i" href="#">模板渲染</a>
+								<a class="toc-i" href="#">增量构建</a>
+								<a class="toc-i lv2" href="#">缓存失效策略</a>
+								<a class="toc-i lv2" href="#">并行编译</a>
+								<a class="toc-i on" href="#">性能对比</a>
+								<a class="toc-i" href="#">踩过的坑</a>
+								<a class="toc-i" href="#">小结</a>
+							</nav>
+						</aside>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<div class="scrim"></div>
+
+		<script>
+			(function () {
+				var root = document.documentElement,
+					q = new URLSearchParams(location.search);
+				root.dataset.palette = q.get('p') || 'vscode';
+				root.dataset.mode = q.get('l') === '1' || q.get('m') === 'light' ? 'light' : 'dark';
+				var burger = document.querySelector('.burger');
+				if (burger) {
+					burger.addEventListener('click', function () {
+						document.body.classList.toggle('drawer-open');
+					});
+					document.querySelector('.scrim').addEventListener('click', function () {
+						document.body.classList.remove('drawer-open');
+					});
+				}
+				// 目录隐藏/显示（仅切换视觉状态；进度高亮与跳转不在此实现）
+				var tocBtn = document.getElementById('toc-toggle');
+				if (tocBtn) {
+					tocBtn.addEventListener('click', function () {
+						var off = document.body.classList.toggle('toc-off');
+						tocBtn.setAttribute('aria-expanded', off ? 'false' : 'true');
+						tocBtn.title = off ? '显示目录' : '隐藏目录';
+					});
+				}
+			})();
+		</script>
 	</body>
 </html>
